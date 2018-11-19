@@ -27,6 +27,11 @@ filetype indent on      " load indent file for specific file type
 
 set t_RV=               " http://bugs.debian.org/608242, http://groups.google.com/group/vim_dev/browse_thread/thread/9770ea844cec3282
 
+" ==================== customize ====================
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
 
 " ==================== vim-plug ====================
 
