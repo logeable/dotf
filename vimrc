@@ -33,6 +33,18 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 
+let mapleader="-"
+let maplocalleader=","
+" ==================== maps ====================
+noremap <leader>n1 :NERDTreeToggle<CR>
+noremap <leader>n2 :NERDTreeFind<CR>
+
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
+
+nnoremap <leader>= :GoImports<cr>
+nnoremap <leader><space> :call deoplete#enable()<cr>
+
 " ==================== vim-plug ====================
 
 " Plugins will be downloaded under the specified directory.
@@ -47,6 +59,13 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'stamblerre/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
+Plug 'Shougo/deoplete.nvim'
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'zchee/deoplete-go', { 'do': 'make'}
+Plug 'rust-lang/rust.vim'
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
@@ -63,4 +82,6 @@ set updatetime=100
 " ==================== for nerdtree ====================
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-map <F9> :NERDTreeToggle<CR>
+
+" ==================== for deoplete ====================
+let g:deoplete#enable_at_startup = 0
