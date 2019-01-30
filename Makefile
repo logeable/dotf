@@ -1,4 +1,4 @@
 .vimrc:vimrc
-	cp ~/.$< ~/.$<.bak
+	-cp ~/.$< ~/.$<.bak
 	cp $< ~/.$<
 
