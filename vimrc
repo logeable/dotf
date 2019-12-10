@@ -43,6 +43,8 @@ nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
 nnoremap <leader>= :GoImports<cr>
+nnoremap <leader>p :Files<cr>
+nnoremap <leader>f :Rg<cr>
 
 " ==================== vim-plug ====================
 
@@ -59,6 +61,7 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'rust-lang/rust.vim'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/async.vim'
@@ -69,11 +72,11 @@ Plug 'w0rp/ale'
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
-
 " ==================== for gruvbox ====================
 set t_Co=256
 set background=dark
 colorscheme gruvbox
+highlight Normal ctermbg=None
 
 " ==================== for git gutter ====================
 set updatetime=100
