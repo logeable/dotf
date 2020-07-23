@@ -43,10 +43,10 @@ nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
 nnoremap <leader>= :GoImports<cr>
-nnoremap <leader>p :Files<cr>
-nnoremap <leader>f :Rg<cr>
 
 " ==================== vim-plug ====================
+let g:lsp_log_verbose = 0
+let g:lsp_log_file = expand('/tmp/vim-lsp.log')
 
 " Plugins will be downloaded under the specified directory.
 call plug#begin('~/.vim/plugged')
@@ -63,26 +63,26 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'rust-lang/rust.vim'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/async.vim'
+
 Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
+
 
 " ==================== for gruvbox ====================
 set t_Co=256
 set background=dark
 colorscheme gruvbox
-highlight Normal ctermbg=None
 
 " ==================== for git gutter ====================
 set updatetime=100
 
-" ==================== for nerdtree ====================
-autocmd StdinReadPre * let s:std_in=1
+" ==================== for nerdtree ==================== autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 
 
@@ -91,7 +91,10 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 if executable('gopls')
     au User lsp_setup call lsp#register_server({
         \ 'name': 'gopls',
-        \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
+        \ 'cmd': {server_info->['gopls']},
         \ 'whitelist': ['go'],
         \ })
+    autocmd BufWritePre *.go LspDocumentFormatSync
 endif
+
+let g:go_fmt_command = "goimports"
